@@ -63,10 +63,6 @@ if pagina == "Home":
         st.write("- Programación funcional")
         st.write("- Programación orientada a objetos")
 
-    st.info("Usa el menú lateral para navegar entre los ejercicios.")
-
-
-
 # =========================================================
 
 elif pagina == "Ejercicio 1":
@@ -85,16 +81,16 @@ elif pagina == "Ejercicio 1":
 
     if agregar:
         if concepto.strip() == "":
-            st.error("Debes ingresar un concepto.")
+            st.error("Debes ingresar un concepto")
         elif valor <= 0:
-            st.error("El valor debe ser mayor que cero.")
+            st.error("El valor debe ser mayor que cero")
         else:
             st.session_state.movimientos.append({
                 "Concepto": concepto,
                 "Tipo": tipo,
                 "Valor": valor
             })
-            st.success("Movimiento agregado correctamente.")
+            st.success("Movimiento agregado")
 
     if len(st.session_state.movimientos) > 0:
         df_mov = pd.DataFrame(st.session_state.movimientos)
@@ -112,15 +108,15 @@ elif pagina == "Ejercicio 1":
         col3.metric("Saldo final", f"S/ {saldo:,.2f}")
 
         if saldo >= 0:
-            st.success("El flujo de caja está a favor.")
+            st.success("El flujo de caja está a favor")
         else:
-            st.error("El flujo de caja está en contra.")
+            st.error("El flujo de caja está en contra")
 
         if st.button("Limpiar movimientos"):
             st.session_state.movimientos = []
             st.rerun()
     else:
-        st.warning("Aún no hay movimientos registrados.")
+        st.warning("No hay movimientos registrados")
 
 
 
@@ -143,9 +139,9 @@ elif pagina == "Ejercicio 2":
 
     if agregar_producto:
         if nombre_producto.strip() == "":
-            st.error("Debes ingresar el nombre del producto.")
+            st.error("Se debe ingresar el nombre del producto")
         elif precio <= 0:
-            st.error("El precio debe ser mayor que cero.")
+            st.error("El precio debe ser mayor que cero")
         else:
             total = precio * cantidad
             st.session_state.productos.append([
@@ -155,7 +151,7 @@ elif pagina == "Ejercicio 2":
                 cantidad,
                 total
             ])
-            st.success("Producto agregado correctamente.")
+            st.success("Producto agregado")
 
     if len(st.session_state.productos) > 0:
         array_productos = np.array(st.session_state.productos, dtype=object)
@@ -175,7 +171,7 @@ elif pagina == "Ejercicio 2":
             st.session_state.productos = []
             st.rerun()
     else:
-        st.warning("Aún no hay productos registrados.")
+        st.warning("Aún no hay productos registrados")
 
 
 # =========================================================
@@ -275,7 +271,7 @@ elif pagina == "Ejercicio 4":
         if crear:
             try:
                 if nombre_proyecto.strip() == "":
-                    st.error("Debes ingresar el nombre del proyecto.")
+                    st.error("Se debe ingresar el nombre del proyecto")
                 else:
                     flujos = [flujo_1, flujo_2, flujo_3]
                     
@@ -301,7 +297,7 @@ elif pagina == "Ejercicio 4":
                         "Decisión": resumen["decision"]
                     })
 
-                    st.success("Proyecto creado correctamente.")
+                    st.success("Proyecto creado")
                     st.markdown("### Resultado del proyecto")
 
                     col1, col2, col3, col4 = st.columns(4)
@@ -321,7 +317,7 @@ elif pagina == "Ejercicio 4":
             df_proyectos = pd.DataFrame(st.session_state.proyectos)
             st.dataframe(df_proyectos, use_container_width=True)
         else:
-            st.warning("No hay proyectos registrados.")
+            st.warning("No hay proyectos registrados")
 
  
     # -------------------------------
@@ -369,13 +365,13 @@ elif pagina == "Ejercicio 4":
                         "Decisión": resumen["decision"]
                     }
 
-                    st.success("Proyecto actualizado correctamente.")
+                    st.success("Proyecto actualizado")
                     st.rerun()
 
                 except Exception as e:
                     st.error(f"Error al actualizar proyecto: {e}")
         else:
-            st.warning("No hay proyectos para actualizar.")
+            st.warning("No hay proyectos para actualizar")
 
  
     # -------------------------------
